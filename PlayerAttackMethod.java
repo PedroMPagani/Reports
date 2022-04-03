@@ -231,3 +231,15 @@
             // Paper end
         }
     }
+
+
+    # Entity.class
+    public Vec3 getDeltaMovement() {
+        return this.deltaMovement;
+    }
+
+    public void setDeltaMovement(Vec3 velocity) {
+        synchronized (this.posLock) { // Paper
+        this.deltaMovement = velocity;
+        } // Paper
+    }
