@@ -1,0 +1,43 @@
+>> You can see here the syncronization of the time too, why would it get so delayed?
+
+[19:29:53] [Server thread/INFO]: DevPagani issued server command: /mob ZOMBIE
+[19:29:53] [pool-19-thread-3/INFO]: byte array length -> 95820
+[19:29:54] [pool-19-thread-1/ERROR]: Took -> 465
+[19:29:54] [pool-19-thread-3/INFO]: byte array length -> 95820
+[19:29:54] [pool-19-thread-2/INFO]: byte array length -> 95820
+[19:29:54] [pool-19-thread-3/INFO]: byte array length -> 95820
+[19:29:55] [pool-19-thread-4/INFO]: byte array length -> 95820
+[19:29:55] [pool-19-thread-3/ERROR]: Took -> 1613
+[19:29:55] [pool-19-thread-4/ERROR]: Took -> 1613
+[19:29:55] [pool-19-thread-4/INFO]: byte array length -> 95820
+[19:29:55] [pool-19-thread-4/INFO]: byte array length -> 95820
+[19:29:56] [pool-19-thread-2/INFO]: byte array length -> 95820
+[19:29:56] [pool-19-thread-3/INFO]: byte array length -> 95820
+[19:29:56] [pool-19-thread-3/ERROR]: Took -> 2608
+[19:29:56] [pool-19-thread-4/INFO]: byte array length -> 95820
+[19:29:56] [pool-19-thread-1/INFO]: byte array length -> 95820
+[19:29:56] [pool-19-thread-2/INFO]: byte array length -> 95820
+[19:29:56] [pool-19-thread-1/INFO]: byte array length -> 95820
+[19:29:56] [pool-19-thread-4/INFO]: byte array length -> 95820
+[19:29:57] [pool-19-thread-3/INFO]: byte array length -> 95820
+[19:29:57] [pool-19-thread-2/ERROR]: Took -> 3412
+[19:29:57] [pool-19-thread-1/ERROR]: Took -> 3412
+[19:29:57] [pool-19-thread-4/INFO]: byte array length -> 95820
+[19:29:58] [pool-19-thread-2/INFO]: byte array length -> 95820
+[19:29:58] [pool-19-thread-1/INFO]: byte array length -> 95820
+[19:29:58] [pool-19-thread-2/INFO]: byte array length -> 95820
+[19:29:58] [pool-19-thread-2/INFO]: byte array length -> 95820
+[19:29:58] [pool-19-thread-1/INFO]: byte array length -> 95820
+[19:29:59] [pool-19-thread-3/ERROR]: Took -> 4575
+[19:29:59] [pool-19-thread-2/INFO]: byte array length -> 95820
+[19:29:59] [pool-19-thread-1/INFO]: byte array length -> 95820
+[19:29:59] [pool-19-thread-2/INFO]: byte array length -> 95820
+[19:29:59] [pool-19-thread-4/INFO]: byte array length -> 95820
+[19:29:59] [pool-19-thread-2/INFO]: byte array length -> 95820
+[19:29:59] [pool-19-thread-1/INFO]: byte array length -> 95820
+[19:29:59] [pool-19-thread-2/INFO]: byte array length -> 95820
+[19:30:00] [pool-19-thread-2/ERROR]: Took -> 5599
+[19:30:00] [pool-19-thread-2/INFO]: byte array length -> 95820
+[19:30:00] [pool-19-thread-4/INFO]: byte array length -> 95820
+[19:30:00] [pool-19-thread-3/INFO]: byte array length -> 95820
+[19:30:00] [pool-19-thread-1/INFO]: byte array length -> 95820
