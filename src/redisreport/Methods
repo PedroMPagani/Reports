@@ -1,0 +1,76 @@
+
+
+### I currently use this encode method to convert to a byte array and send to the pubsub
+
+    @Override
+    public byte[] encode(){
+        ByteArrayDataOutput output = ByteStreams.newDataOutput();
+        output.writeInt(getPacketID());
+        output.writeInt(Bukkit.getServer().getPort());
+        output.writeInt(entities.size());
+        for (Entity e : entities){
+            if (e instanceof CraftEntity craftMob) {
+                output.writeUTF(e.getType().name());
+                Location loc = e.getLocation();
+                output.writeDouble(loc.getX());
+                output.writeDouble(loc.getY());
+                output.writeDouble(loc.getZ());
+                output.writeFloat(loc.getYaw());
+                output.writeFloat(loc.getPitch());
+                output.writeUTF(e.getWorld().getName());
+                output.writeUTF(e.getUniqueId().toString());
+                Map<String,Object> data = getData(craftMob);
+                output.writeInt(data.size());
+                for (Map.Entry<String, Object> entry : data.entrySet()){
+                    // write serialized object here.
+                    try {
+                        String serialized = serialize(entry.getValue());
+                        output.writeUTF(entry.getKey());
+                        output.writeUTF(serialized);
+                    } catch (IOException ex){
+                        continue;
+                    }
+                }
+            }
+        }
+        output.writeLong(System.currentTimeMillis()); # This long here prints the time the packet was encoded(its 1 ms to encode and send, already ran debugs on this)
+        return output.toByteArray();
+    }
+    # Its just a abstract way of handling different message types on my messenger system.
+
+      
+      
+ >>> Method where its created + sent to the pubsub
+ 
+ 
+            AtomicInteger b = new AtomicInteger(0);
+            for (int i = 0; i < 1000; i++){
+                Ghosts.getInstance().getRedisAPI().getExecutor().execute(()->{ # I know i could reduce these static calls, it isnt a priority for now and neither the latency cause I believe
+                    byte[] encode = entitySpawnPacket.encode();
+                    if(b.get() == 0){
+                        Bukkit.getLogger().log(Level.INFO,"byte array length -> " + encode.length);
+                        b.set(1);
+                    }
+                    Ghosts.getInstance().getRedisAPI().publishData("SpawnMobs".getBytes(StandardCharsets.UTF_8), encode);
+                });
+            }
+
+>> Pubsub handler
+
+    @Override
+    public void onMessage(byte[] channel, byte[] message){
+        Ghosts.getInstance().getRedisAPI().getExecutor().execute(()->{
+            ByteArrayDataInput byteArrayDataInput = ByteStreams.newDataInput(message);
+            int packetId = byteArrayDataInput.readInt();
+            Class<? extends CorePacket> a = classes.get(packetId);
+            if (a== null) return;
+            // this needs to be moved off of the redis because it is crashing.
+            try {
+                a.newInstance().handle(byteArrayDataInput);
+                //queue.add(new Pair<>(a.newInstance(),byteArrayDataInput));
+            } catch (InstantiationException | IllegalAccessException e){
+                e.printStackTrace();
+            }
+        });
+    }
+    
